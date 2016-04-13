@@ -6,8 +6,8 @@
       http://www.springframework.org/schema/security/spring-security-4.0.xsd
       http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
-	<http auto-config='true'>
-		<intercept-url pattern="/secured**" access="ROLE_USER"/>
+	<http auto-config='true' use-expressions="true" >
+		<intercept-url pattern="/secured**" access="hasRole('ROLE_USER')"/>
 		<http-basic/>
 	</http>
 	<authentication-manager>
@@ -18,4 +18,4 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-</beans:beans> 
+</beans:beans>
