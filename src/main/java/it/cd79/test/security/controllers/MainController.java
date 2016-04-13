@@ -17,13 +17,13 @@ public class MainController {
 
 	@RequestMapping(value = "/secured", method = GET, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	@ResponseBody
-	public ResponseEntity<Example> checkOpera() {
+	public ResponseEntity<Example> secured() {
 		return new ResponseEntity<Example>(new Example("OK"), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/not_secured", method = GET, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	@ResponseBody
-	public ResponseEntity<Example> checkOperaWithRequestParams() {
+	public ResponseEntity<Example> notSecured() {
 		return new ResponseEntity<Example>(new Example("OK"), HttpStatus.OK);
 	}
 
