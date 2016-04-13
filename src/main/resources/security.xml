@@ -7,7 +7,7 @@
       http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	<http auto-config='true' use-expressions="true" >
-		<intercept-url pattern="/secured**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/secured**" access="hasAnyRole('ROLE_USER','ROLE_ADMINISTRATOR')"/>
 		<http-basic/>
 	</http>
 	<authentication-manager>
