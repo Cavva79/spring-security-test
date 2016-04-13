@@ -13,7 +13,7 @@ import it.cd79.test.security.model.Example;
 
 @RestController
 @RequestMapping
-public class TestController {
+public class MainController {
 
 	@RequestMapping(value = "/secured", method = GET, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	@ResponseBody
