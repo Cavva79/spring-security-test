@@ -27,7 +27,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.View;
 
 import it.cd79.test.security.contexts.WebConfig;
@@ -37,9 +36,6 @@ import it.cd79.test.security.contexts.WebConfig;
 @TestExecutionListeners(listeners = { WithSecurityContextTestExecutionListener.class })
 @WebAppConfiguration
 public class MainControllerIT {
-
-	@Autowired
-	WebApplicationContext context;
 
 	@InjectMocks
 	MainController controller;
@@ -61,18 +57,17 @@ public class MainControllerIT {
 	public void setup() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		mvc = standaloneSetup(controller).setSingleView(mockView).apply(springSecurity(springSecurityFilterChain)).build();
-		// mvc = webAppContextSetup(context).apply(springSecurity()).build();
 	}
 
 	@Test
 	@WithMockUser
-	public void testCheckOperaWithRequestParamsXml() throws Exception {
+	public void testSecuredXml() throws Exception {
 		ResultActions perform = mvc.perform(get("/secured").accept(MediaType.APPLICATION_XML));
 		perform.andExpect(status().isOk());
 	}
 
 	@Test
-	public void testAddOperaJson() throws Exception {
+	public void testNotSecuredJson() throws Exception {
 		ResultActions perform = mvc.perform(get("/not_secured").accept(MediaType.APPLICATION_JSON));
 		perform.andExpect(status().isOk());
 	}
